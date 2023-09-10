@@ -2,17 +2,20 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
-const https = require('https');
+const http = require('http');
+// const https = require('https');
 const cors = require('cors');
 const fs = require('fs');
 const cookieParser = require('cookie-parser');
-const server = https.createServer(
-  {
-    key: fs.readFileSync(__dirname + '/.cert/key.pem', 'utf-8'),
-    cert: fs.readFileSync(__dirname + '/.cert/cert.pem', 'utf-8'),
-  },
-  app
-);
+
+const server = http.createServer(app);
+// const server = https.createServer(
+//   {
+//     key: fs.readFileSync(__dirname + '/.cert/key.pem', 'utf-8'),
+//     cert: fs.readFileSync(__dirname + '/.cert/cert.pem', 'utf-8'),
+//   },
+//   app
+// );
 
 const { updateLoginUser } = require('./lib/query/user.js');
 const logger = require('./lib/logger.js');
@@ -20,10 +23,10 @@ const morgan = require('morgan');
 
 // cors policy config
 const corsOptions = {
-  origin: ['https://tikitaka.io', 'https://192.168.1.236'],
+  origin: ['http://192.168.1.236:8080'],
   methods: ['GET', 'POST', 'OPTIONS'],
-  transports: ['websocket', 'polling'],
-  credentials: true,
+  // transports: ['websocket', 'polling'],
+  // credentials: true,
 };
 
 // webSocket cors policy
@@ -52,7 +55,7 @@ app.use('/post', require('./routes/api/post.js'));
 
 // litening the server
 const serverHost = process.env.SERVER_HOST || '0.0.0.0';
-const serverPort = process.env.SERVER_PORT || 443;
+const serverPort = process.env.SERVER_PORT || 8080;
 // let server;
 // if (fs.existsSync('.cert/key.pem') && fs.existsSync('.cert/cert.pem')) {
 // server = https

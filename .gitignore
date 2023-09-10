@@ -6,4 +6,5 @@ node_modules/
 
 # env file
 .env
+.gitignore
 vapidKeys.json

@@ -36,7 +36,7 @@ const io = require('socket.io')(server, {
 
 app.use(cors(corsOptions));
 
-// http logger
+// http logger (morgan)
 app.use(
   morgan(':method :status :url :response-time ms', { stream: logger.stream })
 );

@@ -28,6 +28,8 @@ const corsOptions = {
   methods: ['GET', 'POST', 'OPTIONS'],
   credentials: true,
 };
+
+// webSocket cors policy
 const io = require('socket.io')(server, {
   cors: corsOptions,
 });

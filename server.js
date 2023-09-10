@@ -20,12 +20,9 @@ const morgan = require('morgan');
 
 // cors policy config
 const corsOptions = {
-  origin: [
-    'http://localhost:5500',
-    'https://localhost:8080',
-    'https://tikitaka.io',
-  ],
+  origin: ['https://tikitaka.io', 'https://192.168.1.236'],
   methods: ['GET', 'POST', 'OPTIONS'],
+  transports: ['websocket', 'polling'],
   credentials: true,
 };
 

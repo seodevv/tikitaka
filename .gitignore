@@ -1,0 +1,7 @@
+# folder
+node_modules/
+.cert/
+
+# env file
+.env
+vapidKeys.json

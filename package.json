@@ -1,0 +1,42 @@
+{
+  "name": "tikitaka",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "homepage": ".",
+  "scripts": {
+    "start": "nodemon server.js",
+    "prod": "NODE_ENV=production nodemon server.js"
+  },
+  "author": "seodev",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "fluent-ffmpeg": "^2.1.2",
+    "fs": "^0.0.1-security",
+    "https": "^1.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.4.0",
+    "nodemailer": "^6.9.4",
+    "open-graph": "^0.1.5",
+    "sharp": "^0.32.3",
+    "socket.io": "^4.7.0"
+  },
+  "devDependencies": {
+    "app-root-path": "^3.1.0",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.3.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1",
+    "process": "^0.11.10",
+    "web-push": "^3.6.5",
+    "winston": "^3.10.0"
+  }
+}

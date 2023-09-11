@@ -26,7 +26,7 @@ const corsOptions = {
   origin: ['https://192.168.1.236'],
   methods: ['GET', 'POST', 'OPTIONS'],
   // transports: ['websocket', 'polling'],
-  // credentials: true,
+  credentials: true,
 };
 
 // webSocket cors policy

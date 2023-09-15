@@ -7,7 +7,7 @@ const {
   insertChatMessageImage,
   selectChatMessageById,
   updateChatlastChatId,
-  activeChat,
+  updateChatStatusActive,
 } = require('../../lib/query/chat');
 const { updateUserProfile, selectUserById } = require('../../lib/query/user');
 const { userInfoObject } = require('../../lib/common');
@@ -114,7 +114,7 @@ router.post('/image', upload.single('image'), async (req, res) => {
   const { chatId, creator } = req.body;
 
   try {
-    await activeChat({ id: chatId });
+    await updateChatStatusActive({ id: chatId });
     let filename = await resize(req.file, 1920);
 
     const insert = await insertChatMessageImage({
@@ -302,7 +302,7 @@ router.post('/video/temp/delete', (req, res) => {
       if (exist) {
         fs.unlink(filename, (error) => {
           if (error) logger.error(error);
-          logger.log(filename, 'deleted');
+          logger.info(filename, 'deleted');
         });
       }
     });
@@ -340,7 +340,7 @@ router.post('/video/temp/edit', (req, res) => {
         if (exist) {
           fs.unlink(filename, (error) => {
             if (error) logger.error(error);
-            logger.log(filename, 'deleted');
+            logger.info(filename, 'deleted');
           });
         }
       });

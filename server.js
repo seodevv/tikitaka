@@ -2,20 +2,20 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
-// const http = require('http');
-const https = require('https');
+const http = require('http');
+// const https = require('https');
 const cors = require('cors');
 const fs = require('fs');
 const cookieParser = require('cookie-parser');
 
-// const server = http.createServer(app);
-const server = https.createServer(
-  {
-    key: fs.readFileSync(__dirname + '/.cert/key.pem', 'utf-8'),
-    cert: fs.readFileSync(__dirname + '/.cert/cert.pem', 'utf-8'),
-  },
-  app
-);
+const server = http.createServer(app);
+// const server = https.createServer(
+//   {
+//     key: fs.readFileSync(__dirname + '/.cert/key.pem', 'utf-8'),
+//     cert: fs.readFileSync(__dirname + '/.cert/cert.pem', 'utf-8'),
+//   },
+//   app
+// );
 
 const { updateLoginUser } = require('./lib/query/user.js');
 const logger = require('./lib/logger.js');
@@ -23,9 +23,9 @@ const morgan = require('morgan');
 
 // cors policy config
 const corsOptions = {
-  origin: ['https://192.168.1.236'],
+  origin: ['https://seodevv.com', 'http://localhost:5500'],
   methods: ['GET', 'POST', 'OPTIONS'],
-  // transports: ['websocket', 'polling'],
+  transports: ['websocket'],
   credentials: true,
 };
 
@@ -38,7 +38,9 @@ app.use(cors(corsOptions));
 
 // http logger (morgan)
 app.use(
-  morgan(':method :status :url :response-time ms', { stream: logger.stream })
+  morgan(':remote-addr - :remote-user :method :status :url :response-time ms', {
+    stream: logger.stream,
+  })
 );
 
 // public config
@@ -75,7 +77,7 @@ const serverPort = process.env.SERVER_PORT || 8080;
 //   });
 // }
 server.listen(serverPort, serverHost, () => {
-  logger.info(`litening on https://${serverHost}:${serverPort}`);
+  logger.info(`litening on http://${serverHost}:${serverPort}`);
 });
 
 // socket.io connection
